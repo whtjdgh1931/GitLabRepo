@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -22,8 +20,10 @@ public class ObjectSpawner : MonoBehaviour
 
     public void Start()
     {
-        
-        GetComponent<BoxCollider>().enabled = false;    
+
+        GetComponent<BoxCollider>().enabled = false;
+
+        InitSpawn();
     }
 
     public void Update()
@@ -33,16 +33,39 @@ public class ObjectSpawner : MonoBehaviour
         if (currentTime > spawnTime)
         {
             currentTime = 0;
-            CreateObject(isLeft);
+            CreateObject();
             spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         }
 
 
     }
 
-    public void CreateObject(bool left)
+    public void InitSpawn()
     {
-        MoveObject spawnObject = Instantiate(spawnObjectPrefab,transform.position,transform.rotation,transform);
-        spawnObject.InitObject(left);
+        int carCnt = Random.Range(0, 5);
+
+        BaseMap parentMap = GetComponentInParent<BaseMap>();
+
+        for (int i = 0; i < carCnt; i++)
+        {
+
+            int RndNum = Random.Range(0, parentMap.roads.Length);
+            if (parentMap.treeBlock.Contains(RndNum)) --i;
+            else
+            {
+                MoveObject spawnObject = Instantiate(spawnObjectPrefab, parentMap.roads[RndNum].transform.position, transform.rotation, transform);
+                spawnObject.InitObject();
+                parentMap.treeBlock.Add(RndNum);
+            }
+
+
+        }
+    }
+
+
+    public void CreateObject()
+    {
+        MoveObject spawnObject = Instantiate(spawnObjectPrefab, transform.position, transform.rotation, transform);
+        spawnObject.InitObject();
     }
 }

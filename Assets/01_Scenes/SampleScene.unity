@@ -905,6 +905,7 @@ MonoBehaviour:
   deathTimer: 999
   currentTime: 0
   GameOverPanel: {fileID: 2140244840}
+  deadEffect: {fileID: 8284570044300648965, guid: e13b09851433fb14ba9d615a5770040d, type: 3}
 --- !u!1 &2140244840
 GameObject:
   m_ObjectHideFlags: 0

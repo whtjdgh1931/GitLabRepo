@@ -21,6 +21,7 @@ public class MapMgr : MonoBehaviour
     public float currentTime;
 
     public GameObject GameOverPanel;
+    public GameObject deadEffect;
 
     public void Start()
     {
@@ -92,12 +93,14 @@ public void CheckMapSize()
 
     public void GameOver()
     {
+        Instantiate(deadEffect, player.transform);
         GameOverPanel.gameObject.SetActive(true);
-        Invoke("Restart", 3f);
+        Invoke("Restart", 2f);
     }
 
     public void Restart()
     {
+
         SceneManager.LoadScene(0);
     }
 

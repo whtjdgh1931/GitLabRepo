@@ -5,6 +5,8 @@ public class MoveObject : MonoBehaviour
 {
     public GameObject[] cars;
 
+    public GameObject destroyEffect;
+
     public float minSpeed;
     public float maxSpeed;
 
@@ -13,7 +15,7 @@ public class MoveObject : MonoBehaviour
         DOTween.Init();
     }
 
-    public void InitObject(bool isLeft)
+    public void InitObject()
     {
         int rndCar = Random.Range(0, cars.Length);
         cars[rndCar].gameObject.SetActive(true);
@@ -31,7 +33,14 @@ public class MoveObject : MonoBehaviour
         }
         else if (collision.collider.CompareTag("MoveObject"))
         {
+            GameObject effect = Instantiate(destroyEffect,transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
             Destroy(gameObject);
+        }
+        else if(collision.collider.CompareTag("Spawner"))
+            {
+            Destroy(gameObject);
+
         }
 
     }

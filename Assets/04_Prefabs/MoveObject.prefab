@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 1644392555537565405}
   - {fileID: 7275494107604086829}
   - {fileID: 4127312618156548015}
+  destroyEffect: {fileID: 2588528297651268907, guid: 610e76f710d7395449afe01f050add9a, type: 3}
   minSpeed: 100
   maxSpeed: 250
 --- !u!54 &2117039058028197410

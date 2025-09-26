@@ -8,6 +8,8 @@ TagManager:
   - Street
   - Grass
   - MoveObject
+  - FxTemporaire
+  - Spawner
   layers:
   - Default
   - TransparentFX
